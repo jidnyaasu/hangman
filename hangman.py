@@ -1,11 +1,12 @@
 import random
+import hangman_art
+import hangman_words
 
-word_list = ['python', 'java', 'kotlin', 'javascript']
 
-print("H A N G M A N")
+print(hangman_art.logo)
 
 while True:
-    word = random.choice(word_list)
+    word = random.choice(hangman_words.word_list)
     guessed_word = "-" * len(word)
     input_letter = ""
     remaining_letters = word
@@ -34,13 +35,15 @@ while True:
             else:
                 print("No such letter in the word")
                 lives = lives - 1
+                print(hangman_art.stages[lives])
             if lives > 0:
                 print("\n" + guessed_word)
             if guessed_word == word:
                 print("You guessed the word!\nYou survived!\n")
                 break
             if lives == 0:
-                print("You are hanged!\n")
+                print("You are hanged!")
+                print(f"The word was: {word}\n")
 
             typed_letters.append(input_letter)
     else:
